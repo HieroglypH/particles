@@ -461,6 +461,8 @@ var pJS = function(tag_id, params){
       case 'image':
 
         function draw(){
+          let globalAlpha_tmp = pJS.canvas.ctx.globalAlpha;
+          pJS.canvas.ctx.globalAlpha = opacity;
           pJS.canvas.ctx.drawImage(
             img_obj,
             p.x-radius,
@@ -468,6 +470,7 @@ var pJS = function(tag_id, params){
             radius*2,
             radius*2 / p.img.ratio
           );
+          pJS.canvas.ctx.globalAlpha = globalAlpha_tmp;
         }
 
         if(pJS.tmp.img_type == 'svg'){
