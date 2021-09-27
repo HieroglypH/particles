@@ -1222,6 +1222,10 @@ var pJS = function(tag_id, params){
     var svg = new Blob([coloredSvgXml], {type: 'image/svg+xml;charset=utf-8'}),
         DOMURL = window.URL || window.webkitURL || window,
         url = DOMURL.createObjectURL(svg);
+    /* iOS hack */
+    if(/[ \(]iP/.test(window.navigator.userAgent) || /Mac OS X/.test(window.navigator.userAgent)) {
+      url = 'data:image/svg+xml,' + coloredSvgXml;
+    }
 
     /* create particle img obj */
     var img = new Image();
